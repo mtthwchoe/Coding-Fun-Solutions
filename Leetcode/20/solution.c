@@ -42,35 +42,43 @@ void printStack() {
 }
 
 bool isValid(char * s){
-    sp = 0;     // needed for some reason
+    sp = 0;     // needed for some reason... oh because repeat calls
     int i = 0;
     while(s[i] != '\0') {
-        if(s[i] == '(' || s[i] == '[' || s[i] == '{') {
-            push(s[i]);
-        }
-        else if(s[i] == ')') {
-            if(peek() != '(') {
-                return(false);
-            }
-            else {
-                pop();
-            }
-        }
-        else if(s[i] == ']') {
-            if(peek() != '[') {
-                return(false);
-            }
-            else {
-                pop();
-            }
-        }
-        else if(s[i] == '}') {
-            if(peek() != '{') {
-                return(false);
-            }
-            else {
-                pop();
-            }
+        switch(s[i]) {
+            case '(' :
+                push(s[i]);
+                break;
+            case '[' :
+                push(s[i]);
+                break;
+            case '{' :
+                push(s[i]);
+                break;
+            case ')' :
+                if(peek() != '(') {
+                    return(false);
+                }
+                else {
+                    pop();
+                }
+                break;
+            case ']' :
+                if(peek() != '[') {
+                    return(false);
+                }
+                else {
+                    pop();
+                }
+                break;
+            case '}' :
+                if(peek() != '{') {
+                    return(false);
+                }
+                else {
+                    pop();
+                }
+                break;
         }
         i++;
     }
